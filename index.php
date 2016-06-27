@@ -5,7 +5,10 @@
 ?>
 
 <body>
-    Hello Mavis
+
+    <div class="col-md-12">
+        <h1>Hello world</h1>
+    </div>
 </body>
 
 <?php 
