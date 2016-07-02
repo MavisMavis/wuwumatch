@@ -1,0 +1,8 @@
+#mainHeader{
+    background-image: url('../image/dog1.jpg');
+    background-color: #242424;
+    background-position: center center;
+    background-size: cover;
+    color:#fff;
+    text-shadow: 2px 2px 3px rgba(0, 0, 0, 0.9);
+}
