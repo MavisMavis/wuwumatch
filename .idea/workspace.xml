@@ -31,7 +31,7 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="signup.php" pinned="false" current-in-tab="true">
+      <file leaf-file-name="signup.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/signup.php">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="-102">
@@ -42,6 +42,16 @@
                 <marker date="1468656141114" expanded="true" signature="1700:1742" ph="SELECT id, n... users" />
                 <marker date="1468656141114" expanded="true" signature="1700:1750" ph="SELECT id, n... users" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name=".gitignore" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/.gitignore">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="17">
+              <caret line="1" column="7" selection-start-line="1" selection-start-column="7" selection-end-line="1" selection-end-column="7" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -337,12 +347,12 @@
       <workItem from="1468040299354" duration="23277000" />
       <workItem from="1468462778747" duration="3598000" />
       <workItem from="1468472619597" duration="7367000" />
-      <workItem from="1468644273261" duration="9205000" />
+      <workItem from="1468644273261" duration="9336000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="71565000" />
+    <option name="totallyTimeSpent" value="71696000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1378" height="754" extended-state="0" />
@@ -787,14 +797,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/.gitignore">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="19" selection-start-line="0" selection-start-column="19" selection-end-line="0" selection-end-column="19" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/signup.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-102">
@@ -805,6 +807,14 @@
             <marker date="1468656141114" expanded="true" signature="1700:1742" ph="SELECT id, n... users" />
             <marker date="1468656141114" expanded="true" signature="1700:1750" ph="SELECT id, n... users" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.gitignore">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="17">
+          <caret line="1" column="7" selection-start-line="1" selection-start-column="7" selection-end-line="1" selection-end-column="7" />
+          <folding />
         </state>
       </provider>
     </entry>
