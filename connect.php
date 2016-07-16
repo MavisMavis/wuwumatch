@@ -1,6 +1,6 @@
 <?php
 
-$con = mysqli_connect("localhost","root","","wuwumatch");
+$mysqli = new mysqli("localhost","root","","wuwumatch");
 
 // Check connection
 if (mysqli_connect_errno())

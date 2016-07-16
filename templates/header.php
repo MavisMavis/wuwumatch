@@ -1,5 +1,8 @@
 <?php
 require_once('connect.php'); // require mysql connection script once
+require_once('helper.php'); // for helper functions
+
+session_start();
 ?>
 <head>
     <title>

@@ -1,8 +1,12 @@
 <!-- Header -->
 <html>
 <?php
-define('TITLE', 'Home Page');
+define('TITLE', 'Add a Dog');
 include 'templates/header.php';
+
+if (!isset($_SESSION['logged_in'])) {
+    redirect('signin.php');
+}
 ?>
 
 <body>
@@ -11,18 +15,11 @@ include 'templates/header.php';
 include 'templates/menu.php';
 ?>
 
+<!-- Page Content -->
 <div class="container">
-    <div class="panel panel-info">
-        <div class="panel-heading">
-            Add your dog
-        </div>
-        <div class="panel-body">
-            
-        </div>
-    </div>
+
 </div>
 
-</body>
 <?php
 include 'templates/footer.php';
 ?>
