@@ -23,8 +23,8 @@ if (isset($_POST['submit'])) {
         $med = $_POST['dogmed'];
 
         // insert into db
-        $q = $mysqli->prepare("INSERT INTO dogs(name, breed_id, breed_type, gender, age, description, medical_desc) VALUES (?, ?, ?, ?, ?, ?, ?)");
-        $q->bind_param('sssssss', $name, $breed, $optpure, $gender, $age, $desc, $med);
+        $q = $mysqli->prepare("INSERT INTO dogs(name, breed_id, breed_type, gender, age, description, medical_desc, owner_id) VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
+        $q->bind_param('sssssssd', $name, $breed, $optpure, $gender, $age, $desc, $med, $_SESSION['user_id']);
         $q->execute();
 
         if($q->affected_rows == 1) {
