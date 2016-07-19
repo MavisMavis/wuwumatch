@@ -24,26 +24,28 @@ $dog = $q->fetch_array(MYSQLI_ASSOC); // fetch one item only, no need loop
 <?php
 include 'templates/menu.php';
 ?>
-
-    <div class="co-md-8 col-md-offset-2">
-        <div class="panel panel-default">
-            <div class="panel-heading">
-                Dog Info
-            </div>
-            <div class="panel-body">
-                <?php
+    <div class="container">
+        <div class="co-md-8 col-md-offset-2">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    Dog Info
+                </div>
+                <div class="panel-body">
+                    <?php
                     if (empty($dog)) {
                         echo '<h2>Dog not found! <a href="index.php">Return home</a></h2>';
                     } else {
                         ?>
                         <h2><?php echo $dog['name'] ?></h2>
-                        
-                    <?php
-                    }
-                ?>
-            </div>
-        </div>
 
+                        <?php
+                    }
+                    ?>
+                </div>
+            </div>
+
+        </div>
     </div>
+
 
 </body>
