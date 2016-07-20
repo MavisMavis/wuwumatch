@@ -14,8 +14,17 @@ $q = $mysqli->query("SELECT d.*, u.name AS owner_name, u.id AS owner_id, b.name 
                       ORDER BY datetime_added DESC ");
 $dogs = [];
 while($row = $q->fetch_array(MYSQLI_ASSOC)) {
+    $dog_id = $row['id'];
+    $row['dog_photos'] = [];
+    $dog_photos_q = $mysqli->query("SELECT location FROM dog_photos WHERE dog_id = '$dog_id' LIMIT 1"); // only take 1
+
+    while($photos_row = $dog_photos_q->fetch_array(MYSQLI_ASSOC)) {
+        $row['dog_photos'][] = $photos_row['location'];
+    }
+
     $dogs[] = $row;
 }
+
 
 ?>
 
@@ -45,7 +54,16 @@ include 'templates/menu.php';
                         <div class="well">
                             <div class="media">
                                 <a class="pull-left" href="#">
-                                    <img class="media-object" src="http://placekitten.com/150/150">
+                                    <?php
+                                    echo '<a href="dogview.php?id='.$dog['id'].'" style="float:left;margin:10px;">';
+                                    if (!empty($dog['dog_photos'])) {
+                                        //has dog photos
+                                        echo '<img class="media-object" src="uploads/'.$dog['dog_photos'][0].'" style="width:150px;height:150px;"></a>';
+                                    } else {
+                                        // no dog image, show a default photo
+                                        echo '<img class="media-object" src="http://placekitten.com/150/150"></a>';
+                                    }
+                                    ?>
                                 </a>
                                 <div class="media-body">
                                     <h4 class="media-heading">

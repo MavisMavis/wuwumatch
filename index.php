@@ -14,6 +14,7 @@ include 'templates/menu.php';
 <!-- Page Content -->
 <div class="container">
     <!-- Header -->
+
     <header class="jumbotron hero-spacer clearfix " id="mainHeader">
         <p>
         <h1 class="text-center"><strong>I Need a partner!</strong></h1>
@@ -44,7 +45,7 @@ include 'templates/menu.php';
 
         <div class="col-md-3 col-sm-6 hero-feature">
             <div class="thumbnail">
-                <img src="http://placehold.it/800x500" alt="">
+                <img src="image/akita.jpg" alt="">
                 <div class="caption">
                     <h3>Akita</h3>
                     <p>The Akita is a large and powerful dog breed with a noble and intimidating presence. He was originally used for guarding royalty and nobility in feudal Japan.
@@ -60,7 +61,7 @@ include 'templates/menu.php';
 
         <div class="col-md-3 col-sm-6 hero-feature">
             <div class="thumbnail">
-                <img src="http://placehold.it/800x500" alt="">
+                <img src="image/golden.jpg" alt="">
                 <div class="caption">
                     <h3>Golden Retriever</h3>
                     <p>The Golden Retriever is one of the most popular dog breeds in the U.S.
@@ -78,7 +79,7 @@ include 'templates/menu.php';
         <div class="clearfix visible-sm"></div>
         <div class="col-md-3 col-sm-6 hero-feature">
             <div class="thumbnail">
-                <img src="http://placehold.it/800x500" alt="">
+                <img src="image/great.jpg" alt="">
                 <div class="caption">
                     <h3>Great Pyrenees</h3>
                     <p>The Great Pyrenees dog breed‘s goal in life is to protect sheep, goats, livestock,
@@ -93,7 +94,7 @@ include 'templates/menu.php';
 
         <div class="col-md-3 col-sm-6 hero-feature">
             <div class="thumbnail">
-                <img src="http://placehold.it/800x500" alt="">
+                <img src="image/siberian.jpg" alt="">
                 <div class="caption">
                     <h3>Siberian Husky</h3>
                     <p>The Siberian Husky is a beautiful dog breed with a thick coat that comes in a multitude
@@ -115,7 +116,7 @@ include 'templates/menu.php';
     <!-- Latest Matches -->
     <div class="row">
         <div class="col-lg-12">
-            <h3>Latest Matches</h3>
+            <h3>Latest Stories</h3>
         </div>
     </div>
     <!-- /.row -->

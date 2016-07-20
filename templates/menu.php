@@ -1,4 +1,4 @@
-<nav class="navbar navbar-inverse" role="navigation">
+<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
 <div class="container" >
     <!-- Brand and toggle get grouped for better mobile display -->
     <div class="navbar-header">
@@ -16,9 +16,15 @@
         <ul class="nav navbar-nav">
 
 
-            <li><a href="breed.php">Dog Breeds </a></li>
-            <li><a href="event.php">Events</a></li>
-            <li><a href="#">Blogs</a></li>
+            <li class="dropdown">
+                <a href="breed.php" class="dropdown-toggle" data-toggle="dropdown">Dog Breeds<b class="caret"></b> </a>
+                <ul class="dropdown-menu">
+                    <li><a href="dog-list.php">Dog List</a></li>
+                    <li><a href="dogview.php">Dog View</a></li>
+                </ul>
+            </li>
+
+            <li><a href="blog.php">Blogs</a></li>
             <li><a href="about.php">About Us</a></li>
             <li><a href="contactus.php">Contact Us</a></li>
         </ul>

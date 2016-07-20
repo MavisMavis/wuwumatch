@@ -12,7 +12,10 @@ if (!isset($_SESSION['logged_in'])) {
 $breeds = getBreeds($mysqli);
 
 if (isset($_POST['submit'])) {
+
+
     if (!empty($_POST['dogname']) && !empty($_POST['dogage']) && !empty($_POST['gender']) && !empty($_POST['breeds']) && !empty($_POST['optPure']) && !empty($_POST['dogdesc']) && !empty($_POST['dogmed'])) {
+
 
         $name = $_POST['dogname'];
         $age = $_POST['dogage'];
@@ -27,9 +30,26 @@ if (isset($_POST['submit'])) {
         $q->bind_param('sssssssd', $name, $breed, $optpure, $gender, $age, $desc, $med, $_SESSION['user_id']);
         $q->execute();
 
+
+
         if($q->affected_rows == 1) {
+
+            $new_insert_dog_id = $q->insert_id;
+
+            // if user has uploaded dog photos
+            if(isset($_POST['dogphotos'])) {
+                $photos = $_POST['dogphotos']; // array of dog image links uploaded by ajax
+
+                // since theres a lot dog photos, we add one by one
+                foreach($photos as $photo) {
+                    $photo_q = $mysqli->prepare("INSERT INTO dog_photos(location, dog_id) VALUES(?, ?)");
+                    $photo_q->bind_param('sd', $photo, $new_insert_dog_id);
+                    $photo_q->execute();
+                }
+
+            }
             // successfully inserted
-            $success = 'Succesfully added your dog, <a href="#">Click here to see your dog here</a>';
+            $success = 'Succesfully added your dog, <a href="dogview.php?id='.$new_insert_dog_id.'">Click here to see your dog here</a>';
         } else {
             $error = 'Unable to add your dog, try again later';
         }
@@ -62,9 +82,22 @@ include 'templates/menu.php';
                     if (isset($success)) {
                         echo '<div class="alert alert-success">'.$success.'</div>';
                     }
+
+
                 ?>
                 <div class="col-md-12">
-                    <form class="form-horizontal" action="add.php" method="post">
+                    <div id="uploadImages" class="clearfix"></div>
+
+                    <form method="post" name="multiple_upload_form" id="multiple_upload_form" enctype="multipart/form-data" action="handle_upload.php">
+                        <input type="hidden" name="image_form_submit" value="1"/>
+                        <label>Choose Image</label>
+                        <input type="file" name="images[]" id="images" multiple >
+                        <div class="uploading hidden">
+                            <p>Uploading...</p>
+                        </div>
+                    </form>
+
+                    <form class="form-horizontal" id="addDogForm" action="add.php" method="post">
 
                         <div class="form-group">
                             <label for="dogname" class="control-label">Dog Name</label>
@@ -136,4 +169,36 @@ include 'templates/menu.php';
 <?php
 include 'templates/footer.php';
 ?>
+
+<script type="text/javascript">
+    $(document).ready(function(){
+        $('#images').on('change',function(){
+            $('#multiple_upload_form').ajaxForm({
+                //display the uploaded images
+                target:'#images_preview',
+                dataType: 'json',
+                beforeSubmit:function(e){
+                    $('.uploading').removeClass('hidden');
+                },
+                success:function(data){
+                    $('.uploading').addClass('hidden');
+
+                    /// add each uploaded image to preview
+                    $.each(data, function(index, imagelink) {
+                        console.log(imagelink);
+
+                        //this add a hidden input to the form with name dogphotos[] which is an array
+                        $('#addDogForm').append('<input type="hidden" name="dogphotos['+ index +']" value="'+ imagelink +'"/>');
+
+                        $('#uploadImages').append(
+                            '<img src="uploads/'+ imagelink +'" class="image">'
+                        )
+                    });
+                },
+                error:function(e){
+                }
+            }).submit();
+        });
+    });
+</script>
 </html>
