@@ -20,7 +20,7 @@
             <li><a href="event.php">Events</a></li>
             <li><a href="#">Blogs</a></li>
             <li><a href="about.php">About Us</a></li>
-            <li><a href="contact.php">Contact</a></li>
+            <li><a href="contactus.php">Contact Us</a></li>
         </ul>
 
         <ul class="nav navbar-nav navbar-right">

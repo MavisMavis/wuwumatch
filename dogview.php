@@ -11,11 +11,7 @@ if (!isset($_SESSION['logged_in'])) {
 $dog_id = $mysqli->escape_string($_GET['id']); // dogview.php?id=dogid
 
 
-$q = $mysqli->query("SELECT d.*, u.name AS owner_name, u.id AS owner_id, b.name AS breed_name
-                      FROM `dogs` AS d, `users` AS u, `breeds` AS b 
-                      WHERE d.owner_id = u.id AND d.breed_id = b.id
-                      AND d.id = '$dog_id'
-                      LIMIT 1");
+$q = $mysqli->query("SELECT d.*, u.name AS owner_name, u.id AS owner_id, b.name AS breed_name FROM `dogs` AS d, `users` AS u, `breeds` AS b WHERE d.owner_id = u.id AND d.breed_id = b.id AND d.id = '$dog_id' LIMIT 1");
 
 $dog = $q->fetch_array(MYSQLI_ASSOC); // fetch one item only, no need loop
 ?>
