@@ -16,14 +16,8 @@
         <ul class="nav navbar-nav">
 
 
-            <li class="dropdown">
-                <a href="breed.php" class="dropdown-toggle" data-toggle="dropdown">Dog Breeds<b class="caret"></b> </a>
-                <ul class="dropdown-menu">
-                    <li><a href="dog-list.php">Dog List</a></li>
-                    <li><a href="dogview.php">Dog View</a></li>
-                </ul>
-            </li>
-
+            <li><a href="breed.php">Dog Breeds</a></li>
+            <li><a href="dog-list.php">Dog List</a></li>
             <li><a href="blog.php">Blogs</a></li>
             <li><a href="about.php">About Us</a></li>
             <li><a href="contactus.php">Contact Us</a></li>

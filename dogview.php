@@ -11,7 +11,7 @@ if (!isset($_SESSION['logged_in'])) {
 $dog_id = $mysqli->escape_string($_GET['id']); // dogview.php?id=dogid
 
 
-$q = $mysqli->query("SELECT d.*, u.name AS owner_name, u.id AS owner_id, b.name AS breed_name FROM `dogs` AS d, `users` AS u, `breeds` AS b WHERE d.owner_id = u.id AND d.breed_id = b.id AND d.id = '$dog_id' LIMIT 1");
+$q = $mysqli->query("SELECT d.*, u.name AS owner_name, u.id AS owner_id, u.contact_no AS owner_contact_no, b.name AS breed_name FROM `dogs` AS d, `users` AS u, `breeds` AS b WHERE d.owner_id = u.id AND d.breed_id = b.id AND d.id = '$dog_id' LIMIT 1");
 
 
 $dog = $q->fetch_array(MYSQLI_ASSOC); // fetch one item only, no need loop
@@ -31,10 +31,16 @@ while($row = $dog_photos_q->fetch_array(MYSQLI_ASSOC)) {
 include 'templates/menu.php';
 ?>
     <div class="container">
-        <div class="co-md-8 col-md-offset-2">
+        <div class="col-md-8 col-md-offset-2">
             <div class="panel panel-default">
-                <div class="panel-heading">
+                <div class="panel-heading clearfix">
                     Dog Info
+                    <?php
+                        if (!empty($dog) && $dog['owner_id'] == $_SESSION['user_id']) {
+                            echo '<a href="delete_dog.php?id='.$dog['id'].'" class="btn btn-sm pull-right btn-danger" id="delete_dog">Delete Dog</a>';
+                        }
+                    ?>
+
                 </div>
                 <div class="panel-body">
                     <?php
@@ -60,9 +66,13 @@ include 'templates/menu.php';
                             }
                         ?>
 
-                        <h1><?php echo $dog['name'] ?></h1>
-                        <h2>Age : <?php echo $dog['age']; ?></h2>
-                        <h2>Gender : <?php echo $dog['gender']; ?></h2>
+                        <h2><?php echo $dog['name'] ?></h2>
+                        <p>Age : <?php echo $dog['age']; ?></p>
+                        <p>Gender : <?php echo $dog['gender']; ?></p>
+                        <p>Type of Breed : <?php echo $dog['breed_name']?></p>
+                        <p>Owner Name : <?php echo $dog['owner_name']?></p>
+                        <p>Owner Contact No : <?php echo $dog['owner_contact_no']?></p>
+
                         <?php
                     }
                     ?>
@@ -71,6 +81,16 @@ include 'templates/menu.php';
 
         </div>
     </div>
+
+    <?php include "templates/footer.php" ?>
+    <script>
+        $(document).ready(function() {
+            $('#delete_dog').click(function() {
+
+            });
+        });
+
+    </script>
 
 
 </body>

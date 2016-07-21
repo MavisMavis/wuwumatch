@@ -1,12 +1,12 @@
 <footer>
     <div class="footer-bottom">
-        <div class="container">
-            <p class="pull-left"> Copyright © Mavis Ong. All right reserved. </p><em>
+        <div class="container text-center">
+            <p> Copyright © Mavis Ong. All right reserved. <em>
                 <?php
                 date_default_timezone_set('Asia/Kuala_Lumpur');
                 print date('g:i a l F j');
                 ?>
-            </em>
+            </em></p>
         </div>
     </div>
 </footer>
