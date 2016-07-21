@@ -5,6 +5,7 @@ require_once('helper.php'); // for helper functions
 session_start();
 ?>
 <head>
+    <link rel="icon" href="image/icon.ico" type="image/ico" sizes="16x16">
     <title>
     <?php
     if (defined('TITLE'))

@@ -113,55 +113,7 @@ include 'templates/menu.php';
     </div>
     <!-- /.row -->
 
-    <!-- Latest Matches -->
-    <div class="row">
-        <div class="col-lg-12">
-            <h3>Latest Stories</h3>
-        </div>
-    </div>
-    <!-- /.row -->
 
-    <!-- Page Features -->
-    <div class="row text-center">
-
-        <div class="col-md-6 col-sm-6 hero-feature">
-            <div class="thumbnail">
-                <img src="http://placehold.it/800x500" alt="">
-                <div class="caption">
-                    <h3>Akita</h3>
-                    <p>The Akita is a large and powerful dog breed with a noble and intimidating presence. He was originally used for guarding royalty and nobility in feudal Japan.
-                        The Akita also tracked and hunted wild boar, black bear, and sometimes deer.
-                        He is a fearless and loyal guardian of his family. The Akita does not back down from challenges and does not frighten easily.
-                        Yet he is also an affectionate, respectful, and amusing dog when properly trained and socialized.</p>
-                    <p>
-                        <a href="#" class="btn btn-primary">Choose Me!</a> <a href="#" class="btn btn-default">More Info</a>
-                    </p>
-                </div>
-            </div>
-        </div>
-
-        <div class="col-md-6 col-sm-6 hero-feature">
-            <div class="thumbnail">
-                <img src="http://placehold.it/800x500" alt="">
-                <div class="caption">
-                    <h3>Golden Retriever</h3>
-                    <p>The Golden Retriever is one of the most popular dog breeds in the U.S.
-                        The breed’s friendly, tolerant attitude makes him a fabulous family pet,
-                        and his intelligence makes him a highly capable working dog. Golden Retrievers
-                        excel at retrieving game for hunters, tracking, sniffing out drugs,
-                        and as therapy and assistance dogs. They’re also natural athletes,
-                        and do well in dog sports such as agility and competitive obedience.</p>
-                    <p>
-                        <a href="#" class="btn btn-primary">Choose Me!</a> <a href="#" class="btn btn-default">More Info</a>
-                    </p>
-                </div>
-            </div>
-        </div>
-
-
-
-    </div>
-    <!-- /.row -->
 
 
 </div>
