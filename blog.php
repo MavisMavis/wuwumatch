@@ -21,7 +21,7 @@ include 'templates/menu.php';
             <ol class="breadcrumb">
                 <li><a href="index.html">Home</a>
                 </li>
-                <li class="active">Blog Home Two</li>
+                <li class="active">Stories</li>
             </ol>
         </div>
     </div>

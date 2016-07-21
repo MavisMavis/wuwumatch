@@ -12,12 +12,22 @@ include 'templates/menu.php';
 ?>
 
 <div class="container">
-
+    <div class="row">
+        <div class="col-lg-12">
+            <h1 class="page-header">Breed
+                <small>Cross Breaded Puppies Need Homes</small>
+            </h1>
+            <ol class="breadcrumb">
+                <li><a href="index.html">Breed</a>
+                </li>
+                <li class="active">List of Breeds</li>
+            </ol>
+        </div>
+    </div>
     <!-- Introduction Row -->
     <div class="row">
         <div class="col-lg-12">
-            <h1 class="page-header">Dog Breeds Corner</h1>
-            <p>Even within breeds there's enormous variety in the way a dog acts and reacts to the world around him. Those differences can be due to how much he was handled as a youngster, how well he was trained after bringing him home, and of course the genetic luck of the draw. In the end, your dog's preferences and personality are as individual as you are--and if you can accept that you're bound to enjoy each other.</p>
+            the way a dog acts and reacts to the world around him. Those differences can be due to how much he was handled as a youngster, how well he was trained after bringing him home, and of course the genetic luck of the draw. In the end, your dog's preferences and personality are as individual as you are--and if you can accept that you're bound to enjoy each other.</p>
         </div>
     </div>
 

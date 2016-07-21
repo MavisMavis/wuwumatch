@@ -44,9 +44,9 @@ include 'templates/menu.php';
                                     Subject</label>
                                 <select id="subject" name="subject" class="form-control" required="required">
                                     <option value="na" selected="">Choose One:</option>
-                                    <option value="service">General Customer Service</option>
+                                    <option value="service">General Enquiry</option>
                                     <option value="suggestions">Suggestions</option>
-                                    <option value="product">Product Support</option>
+                                    <option value="product">Website Support Issue</option>
                                 </select>
                             </div>
                         </div>
@@ -70,7 +70,7 @@ include 'templates/menu.php';
             <form>
                 <legend><span class="glyphicon glyphicon-globe"></span> Our office</legend>
                 <address>
-                    <strong>Twitter, Inc.</strong><br>
+                    <strong>Coventry University </strong><br>
                     795 Folsom Ave, Suite 600<br>
                     San Francisco, CA 94107<br>
                     <abbr title="Phone">
@@ -79,7 +79,7 @@ include 'templates/menu.php';
                 </address>
                 <address>
                     <strong>Full Name</strong><br>
-                    <a href="mailto:#">first.last@example.com</a>
+                    <a href="mailto:#">mavisong11@gmail.com</a>
                 </address>
             </form>
 

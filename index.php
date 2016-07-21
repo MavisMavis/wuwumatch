@@ -3,6 +3,26 @@
 <?php
     define('TITLE', 'Home Page');
     include 'templates/header.php';
+
+
+
+$q = $mysqli->query("SELECT d.*, u.name AS owner_name, u.id AS owner_id, b.name AS breed_name
+                      FROM `dogs` AS d, `users` AS u, `breeds` AS b 
+                      WHERE d.owner_id = u.id AND d.breed_id = b.id
+                      ORDER BY datetime_added DESC LIMIT 4");
+
+$dogs = [];
+while($row = $q->fetch_array(MYSQLI_ASSOC)) {
+    $dog_id = $row['id'];
+    $row['dog_photos'] = [];
+    $dog_photos_q = $mysqli->query("SELECT location FROM dog_photos WHERE dog_id = '$dog_id' LIMIT 1"); // only take 1
+
+    while($photos_row = $dog_photos_q->fetch_array(MYSQLI_ASSOC)) {
+        $row['dog_photos'][] = $photos_row['location'];
+    }
+
+    $dogs[] = $row;
+}
 ?>
 
 <body>
@@ -15,100 +35,70 @@ include 'templates/menu.php';
 <div class="container">
     <!-- Header -->
 
-    <header class="jumbotron hero-spacer clearfix " id="mainHeader">
+    <div class="jumbotron hero-spacer clearfix " id="mainHeader">
         <p>
-        <h1 class="text-center"><strong>I Need a partner!</strong></h1>
+        <h1 class="text-center"><strong>Dog Matching site!</strong></h1>
         </p>
 
-    <div class="input-group">
-        <input type="text" class="form-control" placeholder="Find the Dog  ..."/>
-
-        <div class="input-group-btn">
-            <button class="btn btn-info" style="padding: 9px">
-                <i class="glyphicon glyphicon-search"></i>
-            </button>
+        <div class="col-md-12" style="padding:10px;background:rgba(0,0,0,0.5)">
+            <div class="col-md-4 text-center">
+                <h3><i class="glyphicon glyphicon-plus"></i> Add Your Dog</h3>
+                <p>Add your dog to our ever growing dog listing</p>
+            </div>
+            <div class="col-md-4 text-center">
+                <h3><i class="glyphicon glyphicon-search"></i> Find a Match</h3>
+                <p>Our system will automatically matchmake your dog based on gender and breed</p>
+            </div>
+            <div class="col-md-4 text-center">
+                <h3><i class="glyphicon glyphicon-heart"></i> Love</h3>
+                <p>Get in touch with the matched dog owner and breed your dogs</p>
+            </div>
         </div>
 
     </div>
-    </header>
 
     <!-- Looking for Companion -->
-    <div class="row">
-        <div class="col-lg-12">
-            <h3>Looking for a Companion</h3>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <h3>Looking for a Companion</h3>
+            </div>
         </div>
+        <!-- /.row -->
+
+        <!-- Page Features -->
+        <div class="row text-center">
+
+            <?php
+            foreach($dogs as $dog) {
+                ?>
+                <div class="col-md-3 col-sm-6 hero-feature">
+                    <div class="thumbnail">
+                        <?php
+                        echo '<a href="dogview.php?id='.$dog['id'].'" style="float:left;margin:10px;">';
+                        if (!empty($dog['dog_photos'])) {
+                            //has dog photos
+                            echo '<img src="uploads/'.$dog['dog_photos'][0].'" ></a>';
+                        } else {
+                            // no dog image, show a default photo
+                            echo '<img src="image/default.png"></a>';
+                        }
+                        ?>
+                        <div class="caption">
+                            <h3><a href="dogview.php?id=<?php echo $dog['id'] ?>"><?php echo $dog['name'] ?></a></h3>
+                            <p><?php echo $dog['description'] ?></p>
+                            <p>
+                                <a href="dogview.php?id=<?php echo $dog['id'] ?>" class="btn btn-primary">More Info</a>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <?php
+            }
+            ?>
     </div>
-    <!-- /.row -->
 
-    <!-- Page Features -->
-    <div class="row text-center">
 
-        <div class="col-md-3 col-sm-6 hero-feature">
-            <div class="thumbnail">
-                <img src="image/akita.jpg" alt="">
-                <div class="caption">
-                    <h3>Akita</h3>
-                    <p>The Akita is a large and powerful dog breed with a noble and intimidating presence. He was originally used for guarding royalty and nobility in feudal Japan.
-                        The Akita also tracked and hunted wild boar, black bear, and sometimes deer.
-                        He is a fearless and loyal guardian of his family. The Akita does not back down from challenges and does not frighten easily.
-                        Yet he is also an affectionate, respectful, and amusing dog when properly trained and socialized.</p>
-                    <p>
-                        <a href="#" class="btn btn-primary">Choose Me!</a> <a href="#" class="btn btn-default">More Info</a>
-                    </p>
-                </div>
-            </div>
-        </div>
-
-        <div class="col-md-3 col-sm-6 hero-feature">
-            <div class="thumbnail">
-                <img src="image/golden.jpg" alt="">
-                <div class="caption">
-                    <h3>Golden Retriever</h3>
-                    <p>The Golden Retriever is one of the most popular dog breeds in the U.S.
-                        The breed’s friendly, tolerant attitude makes him a fabulous family pet,
-                        and his intelligence makes him a highly capable working dog. Golden Retrievers
-                        excel at retrieving game for hunters, tracking, sniffing out drugs,
-                        and as therapy and assistance dogs. They’re also natural athletes,
-                        and do well in dog sports such as agility and competitive obedience.</p>
-                    <p>
-                        <a href="#" class="btn btn-primary">Choose Me!</a> <a href="#" class="btn btn-default">More Info</a>
-                    </p>
-                </div>
-            </div>
-        </div>
-        <div class="clearfix visible-sm"></div>
-        <div class="col-md-3 col-sm-6 hero-feature">
-            <div class="thumbnail">
-                <img src="image/great.jpg" alt="">
-                <div class="caption">
-                    <h3>Great Pyrenees</h3>
-                    <p>The Great Pyrenees dog breed‘s goal in life is to protect sheep, goats, livestock,
-                        people, children, grass, flowers, the moon, the lawn furniture, bird feeders,
-                        and any real or imaginary predators that may intrude on your personal space.</p>
-                    <p>
-                        <a href="#" class="btn btn-primary">Choose Me!</a> <a href="#" class="btn btn-default">More Info</a>
-                    </p>
-                </div>
-            </div>
-        </div>
-
-        <div class="col-md-3 col-sm-6 hero-feature">
-            <div class="thumbnail">
-                <img src="image/siberian.jpg" alt="">
-                <div class="caption">
-                    <h3>Siberian Husky</h3>
-                    <p>The Siberian Husky is a beautiful dog breed with a thick coat that comes in a multitude
-                        of colors and markings. Their blue or multi-colored eyes and striking facial masks
-                        only add to the appeal of this breed, which originated in Siberia.
-                        It is easy to see why many are drawn to the Siberian’s wolf-like looks,
-                        but be aware that this athletic, intelligent dog can be independent and
-                        challenging for first-time dog owners.</p>
-                    <p>
-                        <a href="#" class="btn btn-primary">Choose Me!</a> <a href="#" class="btn btn-default">More Info</a>
-                    </p>
-                </div>
-            </div>
-        </div>
 
     </div>
     <!-- /.row -->

@@ -126,6 +126,25 @@ include 'templates/menu.php';
                                         <li><span>Gender: <?php echo $dog['gender'] ?></span></li>
                                     </ul>
                                     <p><i class="glyphicon glyphicon-time"></i> <?php echo timeago($dog['datetime_added']) ?></p>
+
+                                    <?php
+                                    $matches = getMatches($mysqli, $dog['breed_id'], $dog['id'], $dog['gender']);
+                                    if (empty($matches)) {
+                                        echo '<p>No match found yet!</p>';
+                                    } else {
+                                        echo '<h4>Matched with: </h4>';
+                                        foreach ($matches as $matchDog) {
+                                            ?>
+                                                <p>
+                                                 <a href="dogview.php?id=<?php echo $matchDog['id'] ?>">
+                                                    <img width="45" src="uploads/<?php echo $matchDog['dog_photos'][0] ?>"> <?php echo $matchDog['name'] ?>
+                                                 </a>
+                                                </p>
+                                            <?php
+                                        }
+                                    }
+                                    ?>
+
                                 </div>
                             </div>
                         </div><!--item-->

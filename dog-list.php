@@ -46,6 +46,18 @@ include 'templates/menu.php';
 
 <!-- Page Content -->
 <div class="container">
+    <div class="row">
+        <div class="col-lg-12">
+            <h1 class="page-header">List of Dogs
+                <small>Dogs availabe for breeding </small>
+            </h1>
+            <ol class="breadcrumb">
+                <li><a href="index.html">Dog List </a>
+                </li>
+                <li class="active">Dog</li>
+            </ol>
+        </div>
+    </div>
     <div class="col-md-8 col-md-offset-2">
         <div class="panel panel-default">
             <div class="panel-heading">
