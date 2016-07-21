@@ -3,6 +3,19 @@
 <?php
 define('TITLE', 'Contact us');
 include 'templates/header.php';
+
+if (isset($_POST['submit'])) {
+    $to      = $_POST['email'];
+    $subject = $_POST['subject'];
+    $message = $_POST['message'];
+    $headers = 'From: mavisong11@gmail.com' . "\r\n" .
+        'Reply-To: mavisong11@gmail.com' . "\r\n" .
+        'X-Mailer: PHP/' . phpversion();
+
+    mail($to, $subject, $message, $headers);
+
+    $success = 'Successfully sent email';
+}
 ?>
 
 <body>
@@ -21,15 +34,21 @@ include 'templates/menu.php';
 </div>
 <div class="container">
     <div class="row">
+        <?php
+            if(isset($success)) {
+                echo '<div class="alert alert-success">'.$success.'</div>';
+            }
+        ?>
         <div class="col-md-8">
             <div class="well well-sm">
-                <form>
+
+                <form action="contactus.php" method="post">
                     <div class="row">
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label for="name">
                                     Name</label>
-                                <input type="text" class="form-control" id="name" placeholder="Enter name" required="required" />
+                                <input type="text" class="form-control" name="name" id="name" placeholder="Enter name" required="required" />
                             </div>
                             <div class="form-group">
                                 <label for="email">
@@ -37,7 +56,7 @@ include 'templates/menu.php';
                                 <div class="input-group">
                                 <span class="input-group-addon"><span class="glyphicon glyphicon-envelope"></span>
                                 </span>
-                                    <input type="email" class="form-control" id="email" placeholder="Enter email" required="required" /></div>
+                                    <input type="email" class="form-control"  name="email" id="email" placeholder="Enter email" required="required" /></div>
                             </div>
                             <div class="form-group">
                                 <label for="subject">
@@ -54,13 +73,12 @@ include 'templates/menu.php';
                             <div class="form-group">
                                 <label for="name">
                                     Message</label>
-                                <textarea name="message" id="message" class="form-control" rows="9" cols="25" required="required"
+                                <textarea name="message" id="message" name="message" class="form-control" rows="9" cols="25" required="required"
                                           placeholder="Message"></textarea>
                             </div>
                         </div>
                         <div class="col-md-12">
-                            <button type="submit" class="btn btn-primary pull-right" id="btnContactUs">
-                                Send Message</button>
+                            <input type="submit" name="submit" class="btn btn-primary pull-right" id="btnContactUs" value="Send" />
                         </div>
                     </div>
                 </form>

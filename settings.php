@@ -59,11 +59,14 @@ if (isset($_POST['submit'])) {
                 // check if update is successful
                 if ($q->affected_rows == 1) {
                     // update successful
-                        $success = "Successfully updated";
+
                         $_SESSION['username'] = $name;
+                        $_SESSION['success'] = 'Successfully updated settings';
+                        redirect('settings.php');
+                        exit();
 
                 } else {
-                    $error = "Failed to create user";
+                    $error = "Failed to update settings ".$q->error;
                 }
 
             } else {
@@ -91,8 +94,9 @@ include 'templates/menu.php';
             if(isset($error)) {
                 echo '<div class="alert alert-danger">'.$error.'</div>';
             }
-            if (isset($success)) {
-                echo '<div class="alert alert-success">'.$success.'</div>';
+            if (isset($_SESSION['success'])) {
+                echo '<div class="alert alert-success">'.$_SESSION['success'].'</div>';
+                unset($_SESSION['success']);
             }
             ?>
             <form class="form-horizontal" action="settings.php" method="post">

@@ -123,4 +123,13 @@ include 'templates/menu.php';
 <?php
 include 'templates/footer.php';
 ?>
+
+<script>
+    $('.row').hide();
+    $(document).ready(function() {
+        $(".row").each(function(index) {
+            $(this).delay(300*index).fadeIn(400);
+        });
+    });
+</script>
 </html>
