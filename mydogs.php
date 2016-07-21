@@ -1,12 +1,14 @@
 <!-- Header -->
 <html>
 <?php
-define('TITLE', 'All Dogs');
+define('TITLE', 'My Dogs');
 include 'templates/header.php';
 
 if (!isset($_SESSION['logged_in'])) {
     redirect('signin.php');
 }
+
+$owner_id = $_SESSION['user_id'];
 
 $filters = '';
 
@@ -15,9 +17,10 @@ if (isset($_GET['breed'])) {
     $filters .= ' AND d.breed_id = \''.$breed.'\'';
 }
 
-$q = $mysqli->query("SELECT d.*, u.name AS owner_name, u.id AS owner_id, b.name AS breed_name
-                      FROM `dogs` AS d, `users` AS u, `breeds` AS b 
-                      WHERE d.owner_id = u.id AND d.breed_id = b.id
+$q = $mysqli->query("SELECT d.*, b.name AS breed_name
+                      FROM `dogs` AS d, `breeds` AS b 
+                      WHERE d.breed_id = b.id
+                      AND d.owner_id = '$owner_id'
                       $filters
                       ORDER BY datetime_added DESC ");
 
@@ -49,49 +52,49 @@ include 'templates/menu.php';
     <div class="col-md-8 col-md-offset-2">
         <div class="panel panel-default">
             <div class="panel-heading">
-                All Dog List
+                My Dogs
 
                 <select id="breeds" class="pull-right">
                     <?php
                     // Breeds dropdown
 
-                        $breeds = getBreeds($mysqli);
+                    $breeds = getBreeds($mysqli);
 
-                        $allbreedselected = '';
-                        if(!isset($_GET['breed'])) {
-                            $allbreedselected = 'selected';
-                        }
-                        echo '<option value="all" '.$allbreedselected.'>All Breeds</option>';
+                    $allbreedselected = '';
+                    if(!isset($_GET['breed'])) {
+                        $allbreedselected = 'selected';
+                    }
+                    echo '<option value="all" '.$allbreedselected.'>All Breeds</option>';
 
-                        foreach($breeds as $breed) {
-                            $selected = '';
-                            if ($_GET['breed'] == $breed['id']) {
-                                $selected = 'selected';
-                            }
-                            echo '<option value="'.$breed['id'].'" '.$selected.'>'.$breed['name'].'</option>';
+                    foreach($breeds as $breed) {
+                        $selected = '';
+                        if ($_GET['breed'] == $breed['id']) {
+                            $selected = 'selected';
                         }
+                        echo '<option value="'.$breed['id'].'" '.$selected.'>'.$breed['name'].'</option>';
+                    }
                     ?>
                 </select>
             </div>
             <div class="panel-body">
 
                 <?php
-                    if(isset($_SESSION['deleteSuccess'])) {
-                        if($_SESSION['deleteSuccess']) {
-                            echo '<div class="alert alert-success">Successfully deleted dog</div>';
-                        } else {
-                            echo '<div class="alert alert-danger">Unable to delete dog, please try again later</div>';
-                        }
-
-                        unset($_SESSION['deleteSuccess']);
+                if(isset($_SESSION['deleteSuccess'])) {
+                    if($_SESSION['deleteSuccess']) {
+                        echo '<div class="alert alert-success">Successfully deleted dog</div>';
+                    } else {
+                        echo '<div class="alert alert-danger">Unable to delete dog, please try again later</div>';
                     }
+
+                    unset($_SESSION['deleteSuccess']);
+                }
                 ?>
 
                 <?php
-                    if (empty($dogs)) {
+                if (empty($dogs)) {
                     // no results
-                        echo '<h2>No dogs yet</h2>';
-                    } else {
+                    echo '<h2>No dogs yet</h2><p><a href="add.php" class="btn btn-success"><i class="glyphicon glyphicon-plus"></i> Add a Dog</a></p>';
+                } else {
                     foreach($dogs as $dog) {
                         ?>
                         <div class="well">
@@ -114,7 +117,6 @@ include 'templates/menu.php';
                                             <?php echo $dog['name'] ?>
                                         </a>
                                     </h4>
-                                    <p class="text-right"><i class="glyphicon glyphicon-user"></i> <?php echo $dog['owner_name'] ?></p>
                                     <p><?php echo $dog['description'] ?></p>
                                     <ul class="list-inline list-unstyled">
                                         <li><span>Breed: <?php echo $dog['breed_name'] ?></span></li>
@@ -124,13 +126,12 @@ include 'templates/menu.php';
                                         <li><span>Gender: <?php echo $dog['gender'] ?></span></li>
                                     </ul>
                                     <p><i class="glyphicon glyphicon-time"></i> <?php echo timeago($dog['datetime_added']) ?></p>
-
                                 </div>
                             </div>
                         </div><!--item-->
                         <?php
                     } // for each
-                    } // end of else
+                } // end of else
                 ?>
 
             </div>
@@ -141,14 +142,14 @@ include 'templates/menu.php';
 <?php include "templates/footer.php"; ?>
 <script>
     $(document).ready(function() {
-         $('#breeds').on('change', function() {
-             var chosen_breed = $('#breeds option:selected').val();
-             if ( chosen_breed == 'all') {
-                window.location.href= 'dog-list.php';
-             } else {
-                 window.location.href = 'dog-list.php?breed=' + chosen_breed;
-             }
-         });
+        $('#breeds').on('change', function() {
+            var chosen_breed = $('#breeds option:selected').val();
+            if ( chosen_breed == 'all') {
+                window.location.href= 'mydogs.php';
+            } else {
+                window.location.href = 'mydogs.php?breed=' + chosen_breed;
+            }
+        });
     });
 </script>
 

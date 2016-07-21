@@ -19,7 +19,7 @@
             <li><a href="breed.php">Dog Breeds</a></li>
             <li><a href="dog-list.php">Dog List</a></li>
             <li><a href="blog.php">Blogs</a></li>
-            <li><a href="about.php">About Us</a></li>
+
             <li><a href="contactus.php">Contact Us</a></li>
         </ul>
 
@@ -42,6 +42,7 @@
                             echo $_SESSION['username'];
                         } ?> <span class="caret"></span></a>
                     <ul class="dropdown-menu">
+                        <li><a href="mydogs.php">My Dogs</a></li>
                         <li><a href="#">Settings</a></li>
                         <li><a href="logout.php">Log Out</a></li>
                     </ul>
